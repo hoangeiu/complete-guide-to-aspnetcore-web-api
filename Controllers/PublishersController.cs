@@ -1,4 +1,6 @@
-﻿using books.Exceptions;
+﻿using books.ActionResults;
+using books.Exceptions;
+using books.Models;
 using books.Models.Dto;
 using books.Services;
 using Microsoft.AspNetCore.Http;
@@ -46,10 +48,28 @@ namespace books.Controllers
             if (_response != null)
             {
                 return Ok(_response);
+
+                //return _response;
+
+                //var _responseObj = new CustomActionResultDto()
+                //{
+                //    Publisher = _response
+                //};                
+
+                //return new CustomActionResult(_responseObj);
             }
             else
             {
                 return NotFound();
+
+                //return null;
+
+                //var _responseObj = new CustomActionResultDto()
+                //{
+                //    Exception = new Exception("This is coming from publishers controller")
+                //};
+
+                //return new CustomActionResult(_responseObj);
             }
         }
 
