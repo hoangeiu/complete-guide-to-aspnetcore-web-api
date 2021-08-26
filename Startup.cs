@@ -1,4 +1,5 @@
 using books.Context;
+using books.Exceptions;
 using books.Models;
 using books.Services;
 using Microsoft.AspNetCore.Builder;
@@ -64,6 +65,10 @@ namespace books
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // Exception Handling
+            app.ConfigureBuildInExceptionHandler();
+            //app.ConfigureCustomExceptionHandler();
 
             app.UseEndpoints(endpoints =>
             {
