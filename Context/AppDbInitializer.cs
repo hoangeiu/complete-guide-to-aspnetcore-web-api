@@ -1,4 +1,5 @@
 ﻿using books.Context;
+using books.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace books.Models
+namespace books.Context
 {
     public class AppDbInitializer
     {
@@ -27,9 +28,8 @@ namespace books.Models
                             DateRead = DateTime.Now.AddDays(-10),
                             Rate = 4,
                             Genre = "Biography",
-                            Author = "Sylvia Nasar",
                             CoverUrl = "https://m.media-amazon.com/images/I/511wQDs0J7L.jpg",
-                            DateAdded = DateTime.Now
+                            DateAdded = DateTime.Now                            
                         },
                         new Book()
                         {
@@ -37,7 +37,6 @@ namespace books.Models
                             Description = "Nasar thoroughly explores Nash’s prestigious career, from his beginnings at MIT to his work at the RAND Corporation",
                             IsRead = false,
                             Genre = "Behavioral Psychology",
-                            Author = "Susan Cain",
                             CoverUrl = "https://m.media-amazon.com/images/P/0307352153.01._SCLZZZZZZZ_SX500_.jpg",
                             DateAdded = DateTime.Now
                         });
