@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,14 @@ namespace books.Exceptions
 {
     public static class ExceptionMiddlewareExtensions
     {
-        public static void ConfigureBuildInExceptionHandler(this IApplicationBuilder app)
+        public static void ConfigureBuildInExceptionHandler(this IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseExceptionHandler(appError =>
             {
                 appError.Run(async context =>
                 {
+                    var logger = loggerFactory.CreateLogger("ConfigureBuildInExceptionHandler");
+
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = "application/json";
 
@@ -27,17 +30,21 @@ namespace books.Exceptions
 
                     if (contextFeature != null)
                     {
-                        await context.Response.WriteAsync(new ErrorDto()
+                        var errorDtoString = new ErrorDto()
                         {
                             StatusCode = context.Response.StatusCode,
                             Message = contextFeature.Error.Message,
                             Path = contextRequest.Path
-                        }.ToString());
+                        }.ToString();
+
+                        logger.LogError(errorDtoString);
+
+                        await context.Response.WriteAsync(errorDtoString);
                     }
                 });
             });
         }
-    
+
         public static void ConfigureCustomExceptionHandler(this IApplicationBuilder app)
         {
             app.UseMiddleware<CustomExceptionMiddleware>();
