@@ -46,16 +46,17 @@ namespace books
             services.AddTransient<PublishersService>();
             services.AddTransient<LogsService>();
 
-            services.AddApiVersioning(config =>
-            {
-                config.DefaultApiVersion = new ApiVersion(1, 0);
-                config.AssumeDefaultVersionWhenUnspecified = true;
+            // API Version
+            //services.AddApiVersioning(config =>
+            //{
+            //    config.DefaultApiVersion = new ApiVersion(1, 0);
+            //    config.AssumeDefaultVersionWhenUnspecified = true;
 
-                // HTTP Header Versioning
-                //config.ApiVersionReader = new HeaderApiVersionReader("custom-version-header");
-                // Content-Type Versioning
-                //config.ApiVersionReader = new MediaTypeApiVersionReader();
-            });
+            //    // HTTP Header Versioning
+            //    //config.ApiVersionReader = new HeaderApiVersionReader("custom-version-header");
+            //    // Content-Type Versioning
+            //    //config.ApiVersionReader = new MediaTypeApiVersionReader();
+            //});
 
             services.AddSwaggerGen(c =>
             {
