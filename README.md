@@ -2,6 +2,8 @@
 On this project, I create APIs with .NET 5, C# and MS SQL. The APIs offer CRUD books, publihsers, authors.
 Base on this, I study how to create Web API use .NET 5, the relationship in SQL, Error and Exception Handling, Action Return Type, API Version, Log to text file and databse and implement Unit test.
 
+*Note: Unit test is not commit with this project.
+
 Key-features: .NET 5, Web API.
 
 ![alt text](https://i.ibb.co/hyJmg2f/swagger-books.png "swagger")
